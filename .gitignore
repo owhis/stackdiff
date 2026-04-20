@@ -1,0 +1,10 @@
+node_modules/
+*.log
+*.tsbuildinfo
+*.js.map
+Desktop.ini
+npm-debug.log*
+Thumbs.db
+.cache/
+out/
+.env.local
