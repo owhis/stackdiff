@@ -67,3 +67,20 @@ export function parseEnvFile(filePath: string): ParseResult {
 export function parseEnvFiles(filePaths: string[]): ParseResult[] {
   return filePaths.map(parseEnvFile);
 }
+
+/**
+ * Merges multiple ParseResults into a single EnvMap.
+ * Keys from later results override keys from earlier results.
+ * Returns the merged map along with all collected errors.
+ */
+export function mergeEnvResults(results: ParseResult[]): { env: EnvMap; errors: string[] } {
+  const env: EnvMap = {};
+  const errors: string[] = [];
+
+  for (const result of results) {
+    errors.push(...result.errors);
+    Object.assign(env, result.env);
+  }
+
+  return { env, errors };
+}
