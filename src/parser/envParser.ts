@@ -84,3 +84,13 @@ export function mergeEnvResults(results: ParseResult[]): { env: EnvMap; errors: 
 
   return { env, errors };
 }
+
+/**
+ * Returns the set of keys that differ between two EnvMaps.
+ * A key is considered differing if it is missing in one map or
+ * present in both but with different values.
+ */
+export function diffEnvMaps(a: EnvMap, b: EnvMap): string[] {
+  const allKeys = new Set([...Object.keys(a), ...Object.keys(b)]);
+  return Array.from(allKeys).filter((key) => a[key] !== b[key]);
+}
