@@ -32,3 +32,11 @@ export function parseOutputOptions(
 
   return { format, outputFile, noColor };
 }
+
+/**
+ * Returns true if the given format produces machine-readable output
+ * (i.e. can be piped to other tools without further processing).
+ */
+export function isMachineReadableFormat(format: OutputFormat): boolean {
+  return format === "json";
+}
